@@ -1,0 +1,16 @@
+[Unit]
+Description=8x8-Ampel auf MAX7219-LED-Matrix
+After=network.target
+
+[Service]
+Type=simple
+# Benutzer und Pfad an die eigene Installation anpassen:
+User=pi
+WorkingDirectory=/home/pi/Ampelschaltung8x8Display
+Environment=PYTHONIOENCODING=utf-8
+ExecStart=/home/pi/Ampelschaltung8x8Display/.venv/bin/python -m ampel --driver max7219 --intensity 48
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
